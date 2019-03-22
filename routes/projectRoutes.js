@@ -12,14 +12,35 @@ routes.get("/api/projects", async (req, res, next) => {
   }
 });
 
+routes.get("/api/project-actions/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const actions = await db.getProjectActions(id);
+
+    if (!actions) {
+      next({
+        status: 404,
+        message: `Could not find actions for project if ${id}`
+      });
+    }
+
+    res.status(200).json(actions);
+  } catch (e) {
+    next({
+      status: 500,
+      message: `Could not get actions for project id ${id}`
+    });
+  }
+});
+
 routes.post("/api/projects", async (req, res, next) => {
   const { body } = req;
 
   if (!body.name || !body.description) {
     next({
-        status: 400,
-        message: "A name and description must be provided"
-    })
+      status: 400,
+      message: "A name and description must be provided"
+    });
   }
 
   try {
