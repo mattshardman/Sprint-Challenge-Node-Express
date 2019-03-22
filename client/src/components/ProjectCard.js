@@ -17,7 +17,13 @@ function ProjectCard({ id, name, description }) {
     <Card>
       <h2>{formattedName}</h2>
       <p>{description}</p>
-      <Link to={{ pathname: "/project", state: { id, name: formattedName, description } }}>
+      <Link
+        to={{
+          pathname: "/project",
+          state: { id, name: formattedName, description }
+        }}
+        style={{ textDecoration: "none" }}
+      >
         <small style={{ color: "rgb(255, 167, 196)" }}>View project</small>
       </Link>
     </Card>

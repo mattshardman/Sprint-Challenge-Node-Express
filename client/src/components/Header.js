@@ -13,8 +13,8 @@ const HeaderContainer = styled.header`
 function Header() {
   return (
     <HeaderContainer>
-      <Link to="/">
-        <h1 style={{ textDecoration: "none", color: "rgb(255, 167, 196)" }}>
+      <Link to="/"  style={{ textDecoration: "none" }}>
+        <h1 style={{ color: "rgb(255, 167, 196)" }}>
           Project Planner
         </h1>
       </Link>
