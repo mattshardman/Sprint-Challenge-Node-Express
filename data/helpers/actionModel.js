@@ -19,7 +19,8 @@ module.exports = {
   insert: function(action) {
     return db('actions')
       .insert(action)
-      .then(([id]) => this.get(id));
+      .then(([id]) => this.get(id))
+      .catch(e => console.log(e)) 
   },
   update: function(id, changes) {
     return db('actions')
