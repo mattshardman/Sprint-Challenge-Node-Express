@@ -23,7 +23,7 @@ routes.post("/api/projects", async (req, res, next) => {
   }
 
   try {
-    const project = await db.insert(req.body);
+    const project = await db.insert(body);
     res.status(200).json(project);
   } catch (e) {
     next({ status: 500, message: "Could not create project" });

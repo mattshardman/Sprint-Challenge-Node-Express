@@ -13,6 +13,16 @@ routes.get("/api/actions", async (req, res, next) => {
 });
 
 routes.post("/api/actions", async (req, res, next) => {
+  const { body } = req;
+
+  if (!body.project_id || !body.description || !body.notes)
+    [
+      next({
+        status: 400,
+        message: "A project_id, description and notes must be provided"
+      })
+    ];
+
   try {
     const action = await db.insert(req.body);
     res.status(200).json(action);
@@ -26,8 +36,24 @@ routes.post("/api/actions", async (req, res, next) => {
 
 routes.put("/api/actions/:id", async (req, res, next) => {
   const { id } = req.params;
+
+  if (!id) {
+    next({
+      status: 400,
+      message: "Please provide an id"
+    });
+  }
+
   try {
     const action = await db.update(id, req.body);
+
+    if (!action) {
+      next({
+        status: 404,
+        message: `Action with id ${id} could not be found`
+      });
+    }
+
     res.status(201).json(action);
   } catch (e) {
     next({
@@ -39,8 +65,24 @@ routes.put("/api/actions/:id", async (req, res, next) => {
 
 routes.delete("/api/actions/:id", async (req, res, next) => {
   const { id } = req.params;
+
+  if (!id) {
+    next({
+      status: 400,
+      message: "Please provide an id"
+    });
+  }
+
   try {
     const deletedAction = await db.remove(id);
+
+    if (!deletedAction) {
+      next({
+        status: 404,
+        message: `Action with id ${id} could not be found`
+      });
+    }
+
     res.status(201).json(deletedAction);
   } catch (e) {
     next({
