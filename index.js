@@ -1,3 +1,9 @@
-// play this: https://www.youtube.com/watch?v=d-diB65scQU
+const express = require('express');
+const app = express();
 
-// code away!
+app.use(express.json());
+
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`listening on ${PORT}`));
