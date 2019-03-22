@@ -8,7 +8,7 @@ routes.get("/api/actions", async (req, res, next) => {
     const actions = await db.get();
     res.status(200).json(actions);
   } catch (e) {
-    next({ status: 500, message: "Could not get actions", description: e });
+    next({ status: 500, message: "Could not get actions" });
   }
 });
 
@@ -19,8 +19,7 @@ routes.post("/api/actions", async (req, res, next) => {
   } catch (e) {
     next({
       status: 500,
-      message: "Could not create an action",
-      description: e
+      message: "Could not create an action"
     });
   }
 });
@@ -33,8 +32,7 @@ routes.put("/api/actions/:id", async (req, res, next) => {
   } catch (e) {
     next({
       status: 500,
-      message: `Could not update record ${id}`,
-      description: e
+      message: `Could not update record ${id}`
     });
   }
 });
