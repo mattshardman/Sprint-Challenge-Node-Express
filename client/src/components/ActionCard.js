@@ -11,12 +11,26 @@ const Card = styled.div`
   border-radius: 5px;
 `;
 
-function ActionCard({ description, notes }) {
+const Button = styled.button`
+  box-sizing: border-box;
+  width: 30%;
+  height: 35px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background: none;
+  outline: none;
+  color: #fff;
+  padding: 0px 20px;
+  cursor: pointer;
+`;
+
+function ActionCard({ id, description, notes, removeAction }) {
   return (
     <Card>
       <h3 style={{ margin: "5px 0" }}>Description:</h3>
       <p>{description}</p>
       <h4>Notes:</h4> <p>{notes}</p>
+      <Button onClick={() => removeAction(id)}>DELETE</Button>
     </Card>
   );
 }

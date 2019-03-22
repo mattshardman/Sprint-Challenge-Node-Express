@@ -75,6 +75,7 @@ routes.delete("/api/actions/:id", async (req, res, next) => {
 
   try {
     const deletedAction = await db.remove(id);
+    console.log(deletedAction)
 
     if (!deletedAction) {
       next({

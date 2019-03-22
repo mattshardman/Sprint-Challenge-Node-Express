@@ -60,6 +60,7 @@ const Button = styled.button`
 
 function Project({ location }) {
   const [actions, setActions] = useState(null);
+  const [update, setUpdate] = useState(false);
   const [error, setError] = useState(null);
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
@@ -77,22 +78,40 @@ function Project({ location }) {
     }
   };
 
+  const removeAction = async (id) => {
+    try {
+      const result = await axios.delete(
+        `http://localhost:5000/api/actions/${id}`
+      );
+      console.log(result)
+      setUpdate(true);
+    } catch (e) {
+      setError(true);
+    }
+  };
+
   const submitHandler = async e => {
     e.preventDefault();
     try {
-      const result = await axios.post(
-        `http://localhost:5000/api/actions`,
-        { project_id: id, description, notes }
-      );
-      setActions([...actions], result.data );
+      const result = await axios.post(`http://localhost:5000/api/actions`, {
+        project_id: id,
+        description,
+        notes
+      });
+      setUpdate(true);
     } catch (e) {
       setError(true);
     }
   };
 
   useEffect(() => {
+    setUpdate(false);
     getActions();
-  }, [actions]);
+  }, [update]);
+
+  if (error) {
+    return <div>Sorry there was an error</div>;
+  }
 
   return (
     <ProjectContainer>
@@ -101,7 +120,7 @@ function Project({ location }) {
         <p>{location.state.description}</p>
       </Body>
       <Actions>
-        {!!actions && actions.map(action => <ActionCard {...action} />)}
+        {!!actions && actions.map(action => <ActionCard key={action.id} removeAction={removeAction} {...action} />)}
       </Actions>
       <h3 style={{ width: 600, maxWidth: "100%" }}>Add an action</h3>
       <AddAction onSubmit={submitHandler}>
