@@ -28,11 +28,24 @@ routes.put("/api/actions/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     const action = await db.update(id, req.body);
-    res.status(200).json(action);
+    res.status(201).json(action);
   } catch (e) {
     next({
-      status: 500,
+      status: 501,
       message: `Could not update record ${id}`
+    });
+  }
+});
+
+routes.delete("/api/actions/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const deletedAction = await db.remove(id);
+    res.status(201).json(deletedAction);
+  } catch (e) {
+    next({
+      status: 501,
+      message: `Could not delete record ${id}`
     });
   }
 });
