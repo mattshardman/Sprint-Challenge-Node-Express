@@ -26,13 +26,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+* routing
+* middleware
+
 - [ ] Describe Middleware?
+
+* Functions that execute during the lifecycle of a request. Each middleware has access to the req and res object and is able to alter it. It also has access to a next method allowing data to be passed to the next middlware.
 
 - [ ] Describe a Resource?
 
+* Data on the server
+* For example a user resource would be information about a user
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+* Status codes or messages. For example a status 200 would indicate a successful request, a 500 would be server error etc. Messages can also be added to provide more detail for example: could not update the record
+
 - [ ] How can we partition our application into sub-applications?
+
+* separating routes into different files/folders depending on their purposes
+* creating custom middleware to perform specific functions for example error handling
 
 ## Project Setup
 
