@@ -34,4 +34,18 @@ routes.put("/api/projects/:id", async (req, res, next) => {
   }
 });
 
+routes.delete("/api/projects/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const deletedProject = await db.remove(id);
+    res.status(201).json(deletedProject);
+  } catch (e) {
+      console.log(e)
+    next({
+      status: 501,
+      message: `Could not delete record ${id}`
+    });
+  }
+});
+
 module.exports = routes;
