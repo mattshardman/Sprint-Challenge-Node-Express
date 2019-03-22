@@ -12,7 +12,8 @@ const Card = styled.div`
 `;
 
 function ProjectCard({ id, name, description }) {
-  const formattedName = `${name.charAt(0).toUpperCase()} ${name.slice(1)}`;
+    console.log(id)
+  const formattedName = `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
 
   return (
     <Card>
