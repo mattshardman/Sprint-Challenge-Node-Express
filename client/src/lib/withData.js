@@ -8,7 +8,7 @@ const withData = (Component) => (props) => {
     const getProjects = async () => {
         try {
             const result = await axios.get('http://localhost:5000/api/projects');
-            setProjects(result);
+            setProjects(result.data);
         } catch (e) {
             setError(true);
         }
