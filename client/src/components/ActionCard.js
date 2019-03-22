@@ -27,7 +27,7 @@ const Button = styled.button`
 function ActionCard({ id, description, notes, removeAction }) {
   return (
     <Card>
-      <h3 style={{ margin: "5px 0" }}>Description:</h3>
+      <h2 style={{ margin: "5px 0" }}>Description:</h2>
       <p>{description}</p>
       <h4>Notes:</h4> <p>{notes}</p>
       <Button onClick={() => removeAction(id)}>DELETE</Button>

@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = styled.div`
-  height: 200px;
   width: 600px;
   max-width: 100%;
-  padding: 20px 0;
+  padding-bottom: 20px;
   color: #fff;
   text-align: left;
 `;
 
 function ProjectCard({ id, name, description }) {
-    console.log(id)
   const formattedName = `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
 
   return (
