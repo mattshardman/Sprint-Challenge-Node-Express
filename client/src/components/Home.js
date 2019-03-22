@@ -1,12 +1,20 @@
 import React from 'react';
-import withData from '../lib/withData';
+import styled from 'styled-components';
 
-function Home(props) {
-    console.log(props)
+import withData from '../lib/withData';
+import ProjectCard from './ProjectCard';
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`
+
+function Home({ projects }) {
     return (
-        <div>
-            hi
-        </div>
+        <Container>
+            { projects.map(project => <ProjectCard key={project.id} {...project} />) }
+        </Container>
     )
 }
 
