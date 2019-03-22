@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const projectRoutes = require('./routes/projectRoutes');
 const actionRoutes = require('./routes/actionRoutes');
 const error = require('./routes/errorMiddleware');
 
+app.use(cors());
 // parse body to json
 app.use(express.json());
 
